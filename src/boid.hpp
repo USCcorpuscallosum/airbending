@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <ofMain.h>
+#include "ofMain.h"
 
 
 class boid {
@@ -14,7 +14,7 @@ public:
     constexpr static float m2 = 1; //weight
     constexpr static float m3 = .1; //weight
     const static int pathRadius = 30; //radius around point
-
+    float size;
     
     
     
@@ -42,8 +42,7 @@ public:
     void move(); //applies mN * aN to vel
     
 
-    boid(ofVec2f initialPosition, ofVec2f startingVelocity = ofVec2f(0,0)); //constructor
-
+    boid(ofVec2f initialPosition, ofVec2f startingVelocity = ofVec2f(0,0), float startingSize = 1);
     ofVec2f futurePos(); //helper function, returns pos + vel
     
     

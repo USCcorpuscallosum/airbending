@@ -2,9 +2,10 @@
 #include "boid.hpp"
 
 
-boid::boid(ofVec2f initialPosition, ofVec2f startVelocity){
+boid::boid(ofVec2f initialPosition, ofVec2f startVelocity, float startingSize){
     pos = initialPosition;
     vel = startVelocity;
+    size = startingSize;
 }
 
 

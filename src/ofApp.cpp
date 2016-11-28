@@ -7,7 +7,7 @@ void ofApp::setup(){
     ofBackground(backgroundColor);
 
     
-    for (int i = 0; i < 2000; i++){
+    for (int i = 0; i < 4000; i++){
         boids.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
     }
     
@@ -54,18 +54,18 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    for(auto l : paths){
-        ofSetColor(pathColor);
-        l.draw();
-        for ( auto p : l){
-            ofDrawCircle(p, boid::pathRadius);
-        }
-    }
+//    for(auto l : paths){
+//        ofSetColor(pathColor);
+//        l.draw();
+//        for ( auto p : l){
+//            ofDrawCircle(p, boid::pathRadius);
+//        }
+//    }
     ofSetColor(currentPathColor);
     currentPath.draw();
     ofSetColor(ofColor::green);
     for (auto b : boids){
-        ofDrawCircle(b.pos, 2);
+        ofDrawCircle(b.pos, ofRandom(0,1));
     }
 }
 
@@ -86,6 +86,7 @@ void ofApp::keyPressed(int key){
         //clears paths
         currentPath.clear();
         paths.clear();
+        boidPaths.clear();
     }
 }
 
