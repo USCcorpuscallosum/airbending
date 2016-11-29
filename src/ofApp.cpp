@@ -89,14 +89,14 @@ void ofApp::draw(){
     //    }
     ofSetColor(currentPathColor);
     currentPath.draw();
-    ofSetColor(ofColor::green);
+    ofSetColor(ofColor::aquamarine);
     for (auto b : boids){
         //ofSetColor(b.color);
-        ofDrawCircle(b.pos, ofRandom(0,3));
+        ofDrawCircle(b.pos, ofRandom(0,5));
     }
     for (auto b : boidStatic){
         //ofSetColor(b.color);
-        ofDrawCircle(b.pos, ofRandom(0,1));
+        ofDrawCircle(b.pos, ofRandom(0,2));
     }
     
 }
