@@ -5,10 +5,11 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofEnableAlphaBlending();
     ofBackground(backgroundColor);
-
+    
     
     for (int i = 0; i < 4000; i++){
         boids.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
+        boidStatic.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
     }
     
 }
@@ -23,11 +24,28 @@ void ofApp::update(){
         if( position.x > ofGetWidth() || position.y > ofGetHeight()){
             boids.erase(it);
             //spawn a new one
-            boids.push_back(boid(ofVec2f(0,ofRandom(0,ofGetHeight()))));
+            boids.push_back(boid(ofVec2f(ofRandom(0, ofGetWidth()),0)));
             it--;
         }
+        
+        
     }
-//    set boids on paths
+    
+    //Create boid status - create new class if time
+    for (auto it = boidStatic.begin(); it != boidStatic.end(); it++){
+        //check if out of screen
+        auto position = it->pos;
+        if( position.x > ofGetWidth() || position.y > ofGetHeight()){
+            boidStatic.erase(it);
+            //spawn a new one
+            boidStatic.push_back(boid(ofVec2f(ofRandom(0, ofGetWidth()),0)));
+            it--;
+        }
+        
+        
+    }
+    
+    //    set boids on paths
     if(boidPaths.size() > 0){
         for (auto && b : boids){
             for (auto && path : boidPaths){
@@ -49,24 +67,38 @@ void ofApp::update(){
     for (auto && b : boids){
         b.move();
     }
-   
+    
+    for (auto && b : boidStatic){
+        b.followWind(getField(b.pos));
+    }
+    
+    
+    for (auto && b : boidStatic){
+        b.move();
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-//    for(auto l : paths){
-//        ofSetColor(pathColor);
-//        l.draw();
-//        for ( auto p : l){
-//            ofDrawCircle(p, boid::pathRadius);
-//        }
-//    }
+    //    for(auto l : paths){
+    //        ofSetColor(pathColor);
+    //        l.draw();
+    //        for ( auto p : l){
+    //            ofDrawCircle(p, boid::pathRadius);
+    //        }
+    //    }
     ofSetColor(currentPathColor);
     currentPath.draw();
     ofSetColor(ofColor::green);
     for (auto b : boids){
+        //ofSetColor(b.color);
+        ofDrawCircle(b.pos, ofRandom(0,3));
+    }
+    for (auto b : boidStatic){
+        //ofSetColor(b.color);
         ofDrawCircle(b.pos, ofRandom(0,1));
     }
+    
 }
 
 //--------------------------------------------------------------
@@ -98,18 +130,18 @@ ofVec2f ofApp::getField(ofVec2f position){
     float u = ofNoise(t + PHASE, normx * COMPLEXITY + PHASE, normy * COMPLEXITY + PHASE);
     float v = ofNoise(t - PHASE, normx * COMPLEXITY - PHASE, normy * COMPLEXITY + PHASE);
     
-    return ofVec2f(u,v).rotate(-45).getNormalized();
+    return ofVec2f(u,v).rotate(45).getNormalized();
 }
 
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+    
 }
 
 //--------------------------------------------------------------
@@ -119,35 +151,35 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseExited(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+    
 }

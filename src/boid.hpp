@@ -16,7 +16,7 @@ public:
     const static int pathRadius = 30; //radius around point
     float size;
     
-    
+    ofColor color;
     
     
     //path seeking a2, m2
@@ -41,7 +41,7 @@ public:
     
     void move(); //applies mN * aN to vel
     
-
+    
     boid(ofVec2f initialPosition, ofVec2f startingVelocity = ofVec2f(0,0), float startingSize = 1);
     ofVec2f futurePos(); //helper function, returns pos + vel
     
