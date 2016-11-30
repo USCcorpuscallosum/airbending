@@ -7,10 +7,9 @@ void ofApp::setup(){
     ofBackground(backgroundColor);
     
     
-    for (int i = 0; i < 4000; i++){
+    for (int i = 0; i < 6500; i++){
         boids.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
-        boidStatic.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
-    }
+        boidStatic.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));    }
     
 }
 
@@ -28,10 +27,18 @@ void ofApp::update(){
             it--;
         }
         
-        
+        if (ofGetFrameNum() % 25 == 0) {
+            boid1color.set(40, ofRandom(180, 250), 255);
+            
+        }
+        if (ofGetFrameNum() % 40==0) {
+            //boid2color.set(70, ofRandom(130, 150), 178);
+            boid2color.set(50, ofRandom(160, 180), 255);
+            
+        }
     }
     
-    //Create boid status - create new class if time
+    //Create boid static - create new class if time
     for (auto it = boidStatic.begin(); it != boidStatic.end(); it++){
         //check if out of screen
         auto position = it->pos;
@@ -40,6 +47,7 @@ void ofApp::update(){
             //spawn a new one
             boidStatic.push_back(boid(ofVec2f(ofRandom(0, ofGetWidth()),0)));
             it--;
+           
         }
         
         
@@ -51,11 +59,13 @@ void ofApp::update(){
             for (auto && path : boidPaths){
                 if (b.seesPath(path)){
                     b.setPath(path);
+                    
                 }
             }
         }
         for (auto && b : boids){
             b.followPath();
+            
         }
         
     }
@@ -66,6 +76,7 @@ void ofApp::update(){
     
     for (auto && b : boids){
         b.move();
+        
     }
     
     for (auto && b : boidStatic){
@@ -76,6 +87,7 @@ void ofApp::update(){
     for (auto && b : boidStatic){
         b.move();
     }
+
 }
 
 //--------------------------------------------------------------
@@ -89,17 +101,22 @@ void ofApp::draw(){
     //    }
     ofSetColor(currentPathColor);
     currentPath.draw();
-    ofSetColor(ofColor::aquamarine);
-    for (auto b : boids){
+
+    for (auto b : boids ){
         //ofSetColor(b.color);
+        ofSetColor(boid1color);
         ofDrawCircle(b.pos, ofRandom(0,5));
+        
     }
     for (auto b : boidStatic){
         //ofSetColor(b.color);
-        ofDrawCircle(b.pos, ofRandom(0,2));
+        ofSetColor(boid2color);
+        ofDrawCircle(b.pos, ofRandom(0,5));
+    }
     }
     
-}
+    
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){

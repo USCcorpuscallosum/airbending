@@ -28,6 +28,7 @@ public:
     
     vector<boid> boids;
     vector<boid> boidStatic;
+    vector<boid> boidfollowing;
     //noise
     ofVec2f getField(ofVec2f position);
     float COMPLEXITY = 6;
@@ -39,5 +40,14 @@ public:
     ofColor pathColor = ofColor::white;
     ofColor currentPathColor = ofColor::red;
     ofColor backgroundColor = ofColor::black;
+    vector<ofColor> colors;
+    ofColor boid1color;
+    ofColor boid2color;
+
+    
+    
+    
+    
+    
     
 };
