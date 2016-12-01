@@ -16,7 +16,7 @@ void ofApp::setup(){
         
         
     }
-	
+	// Make it so the hand can move across the entire Window.
 	kHand.handLocationContainer.setWidth(ofGetWindowWidth());
 	kHand.handLocationContainer.setHeight(ofGetWindowHeight());
     
@@ -26,7 +26,7 @@ void ofApp::setup(){
 void ofApp::update(){
 	
 	kHand.update();
-	currentPath.addVertex(kHand.handLocation);
+	currentPath.addVertex(kHand.handLocation); //This is literally all you need to do get the hand location.
 	
 	ofSetWindowTitle(std::to_string(ofGetFrameRate()));
     //delete if out of screen
