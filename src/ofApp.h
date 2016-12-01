@@ -25,7 +25,7 @@ public:
     
     vector<ofPolyline> paths;
     ofPolyline currentPath;
-    vector<vector<ofVec2f>> boidPaths;
+    vector<ofVec2f> boidPath;
     
     vector<boid> boids;
     vector<particle> particles;

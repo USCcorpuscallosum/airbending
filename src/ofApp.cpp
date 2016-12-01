@@ -74,21 +74,16 @@ void ofApp::update(){
     }
     
     //    set boids on paths
-    if(boidPaths.size() > 0){
-        for (auto && b : boids){
-            for (auto && path : boidPaths){
-                if (b.seesPath(path)){
-                    b.setPath(path);
-                    
-                }
-            }
+    for (auto && b : boids){
+        if (b.seesPath(boidPath)){
+            b.setPath(boidPath);
         }
-        for (auto && b : boids){
-            b.followPath();
-            
-        }
-        
     }
+    for (auto && b : boids){
+        b.followPath();
+    }
+        
+
     for (auto && b : boids){
         b.followWind(getField(b.pos));
     }
@@ -138,11 +133,11 @@ void ofApp::keyPressed(int key){
     if (key=='e'){
         //end the current path, add it to paths
         paths.push_back(currentPath);
-        vector<ofVec2f> boidPath;
+        vector<ofVec2f> path;
         for (auto && p : currentPath){
-            boidPath.push_back(ofVec2f(p.x,p.y));
+            path.push_back(ofVec2f(p.x,p.y));
         }
-        boidPaths.push_back(boidPath);
+        boidPath = path;
         
         currentPath.clear();
     }
@@ -150,7 +145,7 @@ void ofApp::keyPressed(int key){
         //clears paths
         currentPath.clear();
         paths.clear();
-        boidPaths.clear();
+        boidPath.clear();
     }
 }
 
