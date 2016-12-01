@@ -1,2 +1,2 @@
 ofxGui
-ofxKinectV2-master
+ofxKinectV2
