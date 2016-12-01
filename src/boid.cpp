@@ -6,6 +6,8 @@ boid::boid(ofVec2f initialPosition, ofVec2f startVelocity, float startingSize){
     pos = initialPosition;
     vel = startVelocity;
     size = startingSize;
+    color =  ofColor(0,ofRandom(125,200),255);
+    
 }
 
 
@@ -61,7 +63,7 @@ void boid::move(){
     }
     
     if (vel.length() > terminalVelocity){
-        vel = terminalVelocity * vel.getNormalized();
+        //vel = terminalVelocity * vel.getNormalized();
     }
     pos += vel;
 }

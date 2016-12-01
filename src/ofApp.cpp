@@ -5,11 +5,29 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofEnableAlphaBlending();
     ofBackground(backgroundColor);
+    // allocate color choices
+    boidColorChoices.push_back(ofColor(0,255,255));
+    boidColorChoices.push_back(ofColor(175,238,238));
+    boidColorChoices.push_back(ofColor(207,244,244));
+    boidColorChoices.push_back(ofColor(176,224,230));
+    boidColorChoices.push_back(ofColor(153,255,255));
     
+    //allocate particle color choices
+    particleColorChoices.push_back(ofColor(50,50,255));
+    particleColorChoices.push_back(ofColor(0,153,204));
+    particleColorChoices.push_back(ofColor(51,153,255));
+    particleColorChoices.push_back(ofColor(64,105,225));
     
     for (int i = 0; i < 6500; i++){
         boids.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
-        boidStatic.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));    }
+        
+    }
+    for (int i = 3; i < 4000; i++){
+        if(ofGetFrameNum() % 100== 0) {
+            particles.push_back(particle(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
+        }
+        
+    }
     
 }
 
@@ -27,25 +45,27 @@ void ofApp::update(){
             it--;
         }
         
-        if (ofGetFrameNum() % 25 == 0) {
-            boid1color.set(40, ofRandom(180, 250), 255);
+        //if (ofGetFrameNum() % 25 == 0) {
+            //boid1color.set(35, ofRandom(180, 255), 255);
+            //boid1color.set(127,175,229);
+           
             
-        }
-        if (ofGetFrameNum() % 40==0) {
+        //}
+        //if (ofGetFrameNum() % 40==0) {
             //boid2color.set(70, ofRandom(130, 150), 178);
-            boid2color.set(50, ofRandom(160, 180), 255);
-            
-        }
+            //boid2color.set(50, ofRandom(165, 185), 255);
+            //boid2color.set(50,50,255);
+        //}
     }
     
     //Create boid static - create new class if time
-    for (auto it = boidStatic.begin(); it != boidStatic.end(); it++){
+    for (auto it = particles.begin(); it != particles.end(); it++){
         //check if out of screen
         auto position = it->pos;
         if( position.x > ofGetWidth() || position.y > ofGetHeight()){
-            boidStatic.erase(it);
+            particles.erase(it);
             //spawn a new one
-            boidStatic.push_back(boid(ofVec2f(ofRandom(0, ofGetWidth()),0)));
+            particles.push_back(particle(ofVec2f(ofRandom(0, ofGetWidth()),0)));
             it--;
            
         }
@@ -79,15 +99,11 @@ void ofApp::update(){
         
     }
     
-    for (auto && b : boidStatic){
-        b.followWind(getField(b.pos));
+    for (auto && p : particles){
+        p.pos+=getField(p.pos)*5;
     }
     
     
-    for (auto && b : boidStatic){
-        b.move();
-    }
-
 }
 
 //--------------------------------------------------------------
@@ -103,15 +119,14 @@ void ofApp::draw(){
     currentPath.draw();
 
     for (auto b : boids ){
-        //ofSetColor(b.color);
-        ofSetColor(boid1color);
-        ofDrawCircle(b.pos, ofRandom(0,5));
+        ofSetColor(b.color);
+        ofDrawCircle(b.pos, ofRandom(3,5));
         
     }
-    for (auto b : boidStatic){
+    for (auto p : particles){
         //ofSetColor(b.color);
-        ofSetColor(boid2color);
-        ofDrawCircle(b.pos, ofRandom(0,5));
+        ofSetColor(p.color);
+        ofDrawCircle(p.pos, ofRandom(3,4));
     }
     }
     

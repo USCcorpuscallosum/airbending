@@ -10,10 +10,11 @@ public:
     
     //boid properties
     const static int sightRadius = 100; //what the boid can see
-    const static int terminalVelocity = 3; //boid max velocity
+    const static int terminalVelocity = 4; //boid max velocity
     constexpr static float m2 = 1; //weight
     constexpr static float m3 = .1; //weight
     const static int pathRadius = 30; //radius around point
+    //static vector<ofColor> colorchoices;
     float size;
     
     ofColor color;

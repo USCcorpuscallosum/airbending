@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "boid.hpp"
+#include "particle.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -27,7 +28,7 @@ public:
     vector<vector<ofVec2f>> boidPaths;
     
     vector<boid> boids;
-    vector<boid> boidStatic;
+    vector<particle> particles;
     vector<boid> boidfollowing;
     //noise
     ofVec2f getField(ofVec2f position);
@@ -40,9 +41,8 @@ public:
     ofColor pathColor = ofColor::white;
     ofColor currentPathColor = ofColor::red;
     ofColor backgroundColor = ofColor::black;
-    vector<ofColor> colors;
-    ofColor boid1color;
-    ofColor boid2color;
+    vector<ofColor> boidColorChoices;
+    vector<ofColor> particleColorChoices;
 
     
     
