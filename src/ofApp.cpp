@@ -98,6 +98,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	
+	kHand.refinedMap.update();
+	kHand.refinedMap.draw(handLocation);
+	
     ofSetColor(currentPathColor);
     for (auto && p : boidPath){
         currentPath.addVertex(p);
@@ -123,8 +127,7 @@ void ofApp::draw(){
     }
     ofSetColor(ofColor::white);
 	
-    kHand.refinedMap.update();
-    kHand.refinedMap.draw(handLocation);
+	
 }
     
     

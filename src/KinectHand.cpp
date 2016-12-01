@@ -19,7 +19,7 @@ KinectHand::KinectHand() {
 	maxDepth.set("Max Depth", 1100, 0.1, 3001);
 	handLocation = ofVec2f(0, 0);
 	
-	refinedMap.allocate(512, 424, OF_IMAGE_COLOR_ALPHA);
+	refinedMap.allocate(512, 424, OF_IMAGE_COLOR);
 	refinedMap.setColor(ofColor::white);
 	
 	handLocationContainer = ofRectangle(0, 0, 512, 424);
@@ -43,7 +43,6 @@ void KinectHand::update() {
 	if (kinect.isFrameNew()) {
 		
 		int xRollingSumAverage = 0, yRollingSumAverage = 0, counterSumAverage = 0;
-		int alpha = 255;
 		
 		ofFloatPixels depthMap = kinect.getRawDepthPixels();
 		ofImage & grayScaleMap = refinedMap;
@@ -53,7 +52,6 @@ void KinectHand::update() {
 			float truncatedDepth = depthPoint;
 			if (truncatedDepth > maxDepth || truncatedDepth < minDepth) {
 				truncatedDepth = 16384;
-				alpha = 0;
 			} else {
 				xRollingSumAverage+=x;
 				yRollingSumAverage+=y;
@@ -62,7 +60,7 @@ void KinectHand::update() {
 			int depth = ofMap(truncatedDepth, 0.0, 16384, 0, 255);
 			
 			ofColor color;
-			color.set(254, 20, 20, alpha);
+			color.set(255- depth, 255-depth, 255-depth);
 			grayScaleMap.setColor(x, y, color );
 			if (++x == 512) {
 				y++;
