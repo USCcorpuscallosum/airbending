@@ -121,6 +121,9 @@ void ofApp::draw(){
         ofSetColor(ofColor::red);
         ofDrawBox(handLocation, 10);
     }
+    ofSetColor(ofColor::white);
+    kHand.refinedMap.update();
+    kHand.refinedMap.draw(handLocation);
 }
     
     
