@@ -48,8 +48,9 @@ public:
     vector<ofColor> particleColorChoices;
 
 	KinectHand kHand;
+    ofVec2f handLocation;
 	
-    
+    bool kinectDebug = false;
     
     
     

@@ -25,8 +25,17 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	
+    ofVec2f prev = handLocation;
 	kHand.update();
-	currentPath.addVertex(kHand.handLocation); //This is literally all you need to do get the hand location.
+    handLocation = kHand.handLocation;
+    if (prev.distance(handLocation) > 20){
+        boidPath.push_back(handLocation);
+    }
+    if (boidPath.size() > 10){
+        boidPath.erase(boidPath.begin());
+    }
+
+
 	
 	ofSetWindowTitle(std::to_string(ofGetFrameRate()));
     //delete if out of screen
@@ -89,15 +98,14 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    //    for(auto l : paths){
-    //        ofSetColor(pathColor);
-    //        l.draw();
-    //        for ( auto p : l){
-    //            ofDrawCircle(p, boid::pathRadius);
-    //        }
-    //    }
     ofSetColor(currentPathColor);
+    for (auto && p : boidPath){
+        currentPath.addVertex(p);
+    }
     currentPath.draw();
+    currentPath.clear();
+    
+    
 
     for (auto b : boids ){
         ofSetColor(b.color);
@@ -109,7 +117,11 @@ void ofApp::draw(){
         ofSetColor(p.color);
         ofDrawCircle(p.pos, rand() % 4 +1);
     }
+    if (kinectDebug){
+        ofSetColor(ofColor::red);
+        ofDrawBox(handLocation, 10);
     }
+}
     
     
 
@@ -132,6 +144,9 @@ void ofApp::keyPressed(int key){
         currentPath.clear();
         paths.clear();
         boidPath.clear();
+    }
+    if (key=='d'){
+        kinectDebug != kinectDebug;
     }
 }
 
