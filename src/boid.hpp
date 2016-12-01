@@ -13,7 +13,7 @@ public:
     const static int terminalVelocity = 7; //boid max velocity
     constexpr static float m2 = 1; //weight
     constexpr static float m3 = .1; //weight
-    const static int pathRadius = 30; //radius around point
+    const static int pathRadius = 20; //radius around point
 
     //static vector<ofColor> colorchoices;
     float size;

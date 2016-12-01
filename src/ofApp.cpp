@@ -31,7 +31,7 @@ void ofApp::update(){
     if (prev.distance(handLocation) > 20){
         boidPath.push_back(handLocation);
     }
-    if (boidPath.size() > 10){
+    if (boidPath.size() > 20){
         boidPath.erase(boidPath.begin());
     }
 
@@ -100,15 +100,17 @@ void ofApp::update(){
 void ofApp::draw(){
 	
 	kHand.refinedMap.update();
-	kHand.refinedMap.draw(handLocation);
+    float offsetX = 512 * handLocation.x/ofGetWidth();
+    float offsetY = 496 * handLocation.y/ofGetHeight();
+	kHand.refinedMap.draw(ofVec2f(handLocation.x-offsetX ,handLocation.y-offsetY));
 	
-    ofSetColor(currentPathColor);
-    for (auto && p : boidPath){
-        currentPath.addVertex(p);
-    }
-    currentPath.draw();
-    currentPath.clear();
-    
+//    ofSetColor(currentPathColor);
+//    for (auto && p : boidPath){
+//        currentPath.addVertex(p);
+//    }
+//    currentPath.draw();
+//    currentPath.clear();
+//    
     
 
     for (auto b : boids ){
@@ -123,9 +125,8 @@ void ofApp::draw(){
     }
     if (kinectDebug){
         ofSetColor(ofColor::red);
-        ofDrawBox(handLocation, 10);
+        ofDrawBox(handLocation, 30);
     }
-    ofSetColor(ofColor::white);
 	
 	
 }
@@ -153,7 +154,7 @@ void ofApp::keyPressed(int key){
         boidPath.clear();
     }
     if (key=='d'){
-        kinectDebug != kinectDebug;
+        kinectDebug = ! kinectDebug;
     }
 }
 
