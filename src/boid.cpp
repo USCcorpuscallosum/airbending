@@ -3,10 +3,16 @@
 
 
 boid::boid(ofVec2f initialPosition, ofVec2f startVelocity, float startingSize){
+    vector<ofColor> boidColorChoices;
+    boidColorChoices.push_back(ofColor(0,255,255));
+    boidColorChoices.push_back(ofColor(175,238,238));
+    boidColorChoices.push_back(ofColor(207,244,244));
+    boidColorChoices.push_back(ofColor(176,224,230));
+    boidColorChoices.push_back(ofColor(153,255,255));
     pos = initialPosition;
     vel = startVelocity;
     size = startingSize;
-    color =  ofColor(0,ofRandom(125,200),255);
+    color =  boidColorChoices[rand() % boidColorChoices.size()];
     
 }
 

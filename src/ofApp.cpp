@@ -5,19 +5,7 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofEnableAlphaBlending();
     ofBackground(backgroundColor);
-    // allocate color choices
-    boidColorChoices.push_back(ofColor(0,255,255));
-    boidColorChoices.push_back(ofColor(175,238,238));
-    boidColorChoices.push_back(ofColor(207,244,244));
-    boidColorChoices.push_back(ofColor(176,224,230));
-    boidColorChoices.push_back(ofColor(153,255,255));
-    
-    //allocate particle color choices
-    particleColorChoices.push_back(ofColor(50,50,255));
-    particleColorChoices.push_back(ofColor(0,153,204));
-    particleColorChoices.push_back(ofColor(51,153,255));
-    particleColorChoices.push_back(ofColor(64,105,225));
-    
+
     for (int i = 0; i < 6500; i++){
         boids.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
         

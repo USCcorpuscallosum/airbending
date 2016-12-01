@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ofMain.h>
+
 class particle {
     
 public:
