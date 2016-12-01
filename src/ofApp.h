@@ -7,6 +7,7 @@
 class ofApp : public ofBaseApp{
     
 public:
+    int scalarfield = 5;
     void setup();
     void update();
     void draw();
@@ -33,7 +34,8 @@ public:
     //noise
     ofVec2f getField(ofVec2f position);
     float COMPLEXITY = 6;
-    float TIME_SPEED = .02;
+    float TIME_SPEED_ONE = 0.005;
+    float TIME_SPEED_TWO = 0.02;
     float PHASE = TWO_PI;
     float WIND_SPEED = 80;
     float t;

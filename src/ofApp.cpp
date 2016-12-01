@@ -7,14 +7,13 @@ void ofApp::setup(){
     ofBackground(backgroundColor);
 	ofSetFrameRate(30);
 
-    for (int i = 0; i < 6500; i++){
+    for (int i = 0; i < 7000; i++){
         boids.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
         
     }
-    for (int i = 3; i < 4000; i++){
-        if(ofGetFrameNum() % 100== 0) {
-            particles.push_back(particle(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
-        }
+    for (int i = 0; i < 2000; i++){
+        particles.push_back(particle(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
+        
         
     }
     
@@ -23,9 +22,9 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	ofSetWindowTitle(std::to_string(ofGetFrameRate()));
-    t = ofGetFrameNum() * TIME_SPEED;
     //delete if out of screen
     for (auto it = boids.begin(); it != boids.end(); it++){
+        t = ofGetFrameNum() * TIME_SPEED_ONE;
         //check if out of screen
         auto position = it->pos;
         if( position.x > ofGetWidth() || position.y > ofGetHeight()){
@@ -35,21 +34,11 @@ void ofApp::update(){
             it--;
         }
 		
-        //if (ofGetFrameNum() % 25 == 0) {
-            //boid1color.set(35, ofRandom(180, 255), 255);
-            //boid1color.set(127,175,229);
-           
-            
-        //}
-        //if (ofGetFrameNum() % 40==0) {
-            //boid2color.set(70, ofRandom(130, 150), 178);
-            //boid2color.set(50, ofRandom(165, 185), 255);
-            //boid2color.set(50,50,255);
-        //}
     }
     
     //Create boid static - create new class if time
     for (auto it = particles.begin(); it != particles.end(); it++){
+        t = ofGetFrameNum() * TIME_SPEED_TWO;
         //check if out of screen
         auto position = it->pos;
         if( position.x > ofGetWidth() || position.y > ofGetHeight()){
@@ -85,7 +74,7 @@ void ofApp::update(){
     }
     
     for (auto && p : particles){
-        p.pos+=getField(p.pos)*5;
+        p.pos+=getField(p.pos)*scalarfield;
     }
     
     
@@ -105,13 +94,13 @@ void ofApp::draw(){
 
     for (auto b : boids ){
         ofSetColor(b.color);
-        ofDrawCircle(b.pos, ofRandom(3,5));
+        ofDrawCircle(b.pos, rand() % 5 + 1);
         
     }
     for (auto p : particles){
         //ofSetColor(b.color);
         ofSetColor(p.color);
-        ofDrawCircle(p.pos, ofRandom(3,4));
+        ofDrawCircle(p.pos, rand() % 4 +1);
     }
     }
     

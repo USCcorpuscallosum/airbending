@@ -1,5 +1,6 @@
 
 #include "boid.hpp"
+#include <time.h>
 
 
 boid::boid(ofVec2f initialPosition, ofVec2f startVelocity, float startingSize){
@@ -65,12 +66,13 @@ void boid::move(){
         vel += m2 * a2;
     }
     if (followingWind){
+        //srand(time(NULL));
         vel += m3 * a3;
     }
     
-    if (vel.length() > terminalVelocity){
+    //if (vel.length() > terminalVelocity){
         //vel = terminalVelocity * vel.getNormalized();
-    }
+    //}
     pos += vel;
 }
 bool boid::seesPath(const vector<ofVec2f> & inputPath){
