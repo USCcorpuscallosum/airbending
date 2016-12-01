@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "boid.hpp"
 #include "particle.hpp"
+#include "KinectHand.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -46,8 +47,8 @@ public:
     vector<ofColor> boidColorChoices;
     vector<ofColor> particleColorChoices;
 
-    
-    
+	KinectHand kHand;
+	
     
     
     

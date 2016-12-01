@@ -16,11 +16,18 @@ void ofApp::setup(){
         
         
     }
+	
+	kHand.handLocationContainer.setWidth(ofGetWindowWidth());
+	kHand.handLocationContainer.setHeight(ofGetWindowHeight());
     
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	
+	kHand.update();
+	currentPath.addVertex(kHand.handLocation);
+	
 	ofSetWindowTitle(std::to_string(ofGetFrameRate()));
     //delete if out of screen
     for (auto it = boids.begin(); it != boids.end(); it++){
@@ -152,7 +159,7 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-    currentPath.addVertex(ofPoint(x,y));
+    //currentPath.addVertex(ofPoint(x,y));
 }
 
 //--------------------------------------------------------------
