@@ -5,6 +5,7 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofEnableAlphaBlending();
     ofBackground(backgroundColor);
+	ofSetFrameRate(30);
 
     for (int i = 0; i < 6500; i++){
         boids.push_back(boid(ofVec2f(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()))));
@@ -21,6 +22,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	ofSetWindowTitle(std::to_string(ofGetFrameRate()));
     t = ofGetFrameNum() * TIME_SPEED;
     //delete if out of screen
     for (auto it = boids.begin(); it != boids.end(); it++){
@@ -32,7 +34,7 @@ void ofApp::update(){
             boids.push_back(boid(ofVec2f(ofRandom(0, ofGetWidth()),0)));
             it--;
         }
-        
+		
         //if (ofGetFrameNum() % 25 == 0) {
             //boid1color.set(35, ofRandom(180, 255), 255);
             //boid1color.set(127,175,229);
