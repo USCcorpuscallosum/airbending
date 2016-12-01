@@ -551,4 +551,22 @@ dependencies: \
   ../../../libs/openFrameworks/video/ofAVFoundationPlayer.h \
   ../../../libs/openFrameworks/3d/ofCamera.h \
   ../../../libs/openFrameworks/3d/ofEasyCam.h src/boid.hpp \
-  src/particle.hpp
+  src/particle.hpp src/KinectHand.hpp \
+  /Users/ldastur/Documents/Projects/Personal/Programming/OpenFrameworks/of_v0.9.3_osx_release/addons/ofxKinectV2/src/ofxKinectV2.h \
+  /Users/ldastur/Documents/Projects/Personal/Programming/OpenFrameworks/of_v0.9.3_osx_release/addons/ofxKinectV2/libs/protonect/ofProtonect.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/libfreenect2.hpp \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/config.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/frame_listener.hpp \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/frame_listener_impl.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/registration.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/packet_pipeline.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/depth_packet_processor.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/packet_processor.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/rgb_packet_processor.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/libfreenect2/logger.h \
+  /Users/ldastur/Documents/Projects/Personal/Programming/OpenFrameworks/of_v0.9.3_osx_release/apps/CorpusCollosum/airbending/../../../addons/ofxKinectV2/libs/libfreenect2/include/internal/libfreenect2/usb/transfer_pool.h \
+  /Users/ldastur/Documents/Projects/Personal/Programming/OpenFrameworks/of_v0.9.3_osx_release/apps/CorpusCollosum/airbending/../../../addons/ofxKinectV2/libs/libusb/include/libusb/libusb.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/internal/libfreenect2/data_callback.h \
+  ../../../addons/ofxKinectV2/libs/libfreenect2/include/internal/libfreenect2/threading.h \
+  /Users/ldastur/Documents/Projects/Personal/Programming/OpenFrameworks/of_v0.9.3_osx_release/apps/CorpusCollosum/airbending/../../../addons/ofxKinectV2/libs/libfreenect2/include/internal/libfreenect2/usb/event_loop.h \
+  ../../../addons/ofxKinectV2/libs/protonect/ofRGBPacketProcessor.h
