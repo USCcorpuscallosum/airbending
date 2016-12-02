@@ -102,6 +102,7 @@ void ofApp::draw(){
 	kHand.refinedMap.update();
     float offsetX = 512 * handLocation.x/ofGetWidth();
     float offsetY = 496 * handLocation.y/ofGetHeight();
+    ofSetColor(ofColor::red);
 	kHand.refinedMap.draw(ofVec2f(handLocation.x-offsetX ,handLocation.y-offsetY));
 	
 //    ofSetColor(currentPathColor);
